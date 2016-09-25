@@ -9,13 +9,26 @@
       <fieldtype name="tdates" class="solr.TrieDateField" sortMissingLast="true" omitNorms="true" />
       <fieldtype name="tlongs" class="solr.TrieLongField" sortMissingLast="true" omitNorms="true" />
       <fieldtype name="tdoubles" class="solr.TrieDoubleField" sortMissingLast="true" omitNorms="true" />
+      <fieldType name="searchTextType" class="solr.TextField" omitNorms="false">
+  		<analyzer type="index">
+		    <tokenizer class="solr.StandardTokenizerFactory"/>
+		    <filter class="solr.StandardFilterFactory"/>
+		    <filter class="solr.LowerCaseFilterFactory"/>
+		    <filter class="solr.EdgeNGramFilterFactory" minGramSize="2" maxGramSize="15"/>
+  		</analyzer>
+	   <analyzer type="query">
+	    	<tokenizer class="solr.StandardTokenizerFactory"/>
+	    	<filter class="solr.StandardFilterFactory"/>
+	    	<filter class="solr.LowerCaseFilterFactory"/>
+	   </analyzer>
+	  </fieldType>
    </types>
    
    <fields>
         <field name="id" type="string" indexed="true" stored="true" required="true"  />
-        <field name="city" type="string" indexed="true" stored="true" />
-        <field name="province" type="string" indexed="true" stored="true"/>
-        <field name="country" type="string" indexed="true" stored="true"/>
+        <field name="city" type="text" indexed="true" stored="true" />
+        <field name="province" type="text" indexed="true" stored="true"/>
+        <field name="country" type="text" indexed="true" stored="true"/>
         <field name="zipCode" type="string" indexed="true" stored="true" />
         <field name="type" type="string" indexed="true" stored="true"/>
         <field name="hasAirCondition" type="booleans" indexed="true" stored="true"/>
@@ -25,7 +38,15 @@
         <field name="dailyPrice" type="tdoubles" indexed="true" stored="true" />
         <field name="currency" type="string" indexed="true" stored="true"/>
         <field name="roomsNumber" type="int" indexed="true" stored="true"/>
+        <field name="searchText" type="searchTextType" indexed="true" stored="false" multiValued="true"/>
         <field name="_version_" type="long" indexed="true" stored="true" multiValued="false"/>
+        
+        <copyField source="id" dest="searchText"/> 
+        <copyField source="city" dest="searchText"/> 
+        <copyField source="province" dest="searchText"/> 
+        <copyField source="country" dest="searchText"/> 
+        <copyField source="zipCode" dest="searchText"/> 
+        <copyField source="type" dest="searchText"/> 
    </fields>
 
    <uniqueKey>id</uniqueKey>
