@@ -9,6 +9,9 @@ This Application can be used to search Rentals. Following are the features of th
 3) Search of Rentals by Using different criteria based on provided data eg. search of all rentals from from city18 that have three rooms and a garden
 4) Search for Rentals by Range (For room number) i.e. Rentals having minimum number of room to maximum number of room
 
+Features leftout due to time constraint:
+1) Time range search.
+2) Removal of duplicate entry.
 
 Following version of Solr and Cassandra has been used to implment the project.
 Solr: 6.2
