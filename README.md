@@ -13,7 +13,8 @@ Features:
 
 
 Todo:
-Flexible configuration for Cassandra
-Flexible Configuration for Solr
+1. Flexible configuration for Cassandra
+2. Flexible Configuration for Solr
+3. Batch reads in Cassandra
 
 
