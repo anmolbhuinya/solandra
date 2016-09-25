@@ -2,63 +2,38 @@
 
 a) JAVA 8 environment is required.
 b) LINUX system (MAC)
-c) cassandra-driver-core 3.0.3, commons-fileupload 1.3, solr-solrj 6.2 has been used to implement the java application.
+c) Maven installed in the system (Apache maven version 3.3.3)
 d) solr 6.2 and cassandra 3.5 has been used for the project. 
+e) Create a Folder Demo
+f) Download solr-6.2.0.tgz, apache-cassandra-3.5-bin.tar.gz and apache-tomcat-8.0.15.tar and put in Demo Folder.
+g) Unzip the compressed files mentioned in step f)
+h) Go inside apache-cassandra-3.5/conf and open cassandra.yaml in text editor. Find  start_rpc and change its value from false to true.
+i) Copy AnmolBhuinya_SA_Solr_NoSQL.zip folder inside demo folder.
+j) Unzip AnmolBhuinya_SA_Solr_NoSQL.zip
+k) Go inside AnmolBhuinya_SA_Solr_NoSQL/Scripts/
+l) Exceute cassandra_start.sh to start cassandra. It would start and listen at port 9042 for our web application solandra.
+m) Execute solandra_build.sh to build solandra. For test cases cassandra should be running.
+n) Execute solandra_deploy.sh to deploy solandra.war to tomcat webapps folder.
+o) Execute solr_configure.sh to configure solr server. This script would do the following tasks:
+   o1) Creates a core "rental" in solr server where cassandra data would be indexed.
+   o2) Copies solrconfig.xml, schema.xml and other config files insides rental/conf from source code.
+p) Execute solr_start.sh to start solr. It would start at port 8983. Base URL for solr: http://localhost:8983/solr/
+q) Execute solr_create_core.sh to create "rental" core.
+r) Execute tomcat_start.sh to start tomcat. Our webapp solandra would be running at http://localhost:8080/solandra/
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-2. Instructions to import database
-
-a) CSV data can be imported to cassandra by web application. Deplo
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+2. Instructions to import database: rental.csv data can be imported to cassandra by web application. 
+a) rental.csv would be there in source folder at Source/solandra/rental.csv
+b) Start our web application solandra which would be running at http://localhost:8080/solandra/
+c) The first option would be to upload file to cassandra. Choose file and upload. Data would be imported to cassandra.
+d) Second page in web-application would be show to index the cassandra data. Click on Index button to index data in solr.
+e) After indexing data 3rd page would be visible which is search page, where indexed data in solr can be searched.
 
 
 
 3. Assumptions 
-
 a) The project work is meant only for given csv data.
 b) Datatype for csv data is included in second line of file to import in cassandra.
 c) Datatype allowed only for the given data varchar, boolean, integer and double.
