@@ -10,16 +10,18 @@ g) Unzip the compressed files mentioned in step f)
 h) Go inside apache-cassandra-3.5/conf and open cassandra.yaml in text editor. Find  start_rpc and change its value from false to true.
 i) Copy AnmolBhuinya_SA_Solr_NoSQL.zip folder inside demo folder.
 j) Unzip AnmolBhuinya_SA_Solr_NoSQL.zip
-k) Go inside AnmolBhuinya_SA_Solr_NoSQL/Scripts/
-l) Exceute cassandra_start.sh to start cassandra. It would start and listen at port 9042 for our web application solandra.
-m) Execute solandra_build.sh to build solandra. For test cases cassandra should be running.
-n) Execute solandra_deploy.sh to deploy solandra.war to tomcat webapps folder.
-o) Execute solr_configure.sh to configure solr server. This script would do the following tasks:
+k) Copy Scripts and Source folder from AnmolBhuinya_SA_Solr_NoSQL/Scripts/ and AnmolBhuinya_SA_Solr_NoSQL/Source/ inside Demo folder. 
+   i.e Demo/Scripts and Demo/Source/
+l) Open terminal and go to Scripts folder. Give execute permission to scripts.
+m) Exceute cassandra_start.sh to start cassandra. It would start and listen at port 9042 for our web application solandra.
+n) Execute solandra_build.sh to build solandra. For test cases cassandra should be running.
+o) Execute solandra_deploy.sh to deploy solandra.war to tomcat webapps folder.
+p) Execute solr_configure.sh to configure solr server. This script would do the following tasks:
    o1) Creates a core "rental" in solr server where cassandra data would be indexed.
    o2) Copies solrconfig.xml, schema.xml and other config files insides rental/conf from source code.
-p) Execute solr_start.sh to start solr. It would start at port 8983. Base URL for solr: http://localhost:8983/solr/
-q) Execute solr_create_core.sh to create "rental" core.
-r) Execute tomcat_start.sh to start tomcat. Our webapp solandra would be running at http://localhost:8080/solandra/
+q) Execute solr_start.sh to start solr. It would start at port 8983. Base URL for solr: http://localhost:8983/solr/
+r) Execute solr_create_core.sh to create "rental" core.
+s) Execute tomcat_start.sh to start tomcat. Our webapp solandra would be running at http://localhost:8080/solandra/
 
 
 
