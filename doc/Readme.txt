@@ -1,1 +1,0 @@
-webapp=/solr path=/dataimport params={core=rental&optimize=false&indent=on&commit=true&name=dataimport&clean=true&wt=json&command=full-import&_=1474737543869&verbose=false}
