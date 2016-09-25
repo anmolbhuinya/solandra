@@ -16,6 +16,7 @@
 
 </head>
 <body>
+        <a href="index.jsp">Home Page</a>
 
 		<h3>Search Rental</h3>
         <form action="rentalSearch">

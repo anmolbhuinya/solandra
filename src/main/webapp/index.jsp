@@ -16,5 +16,11 @@
         <h3>Or</h3>
         <h3>Go To Search Page</h3>
         <a href="search.jsp">Search Rental</a>
+        
+        <h3>Or</h3>
+        <h3>Index Cassandra Data To Solr</h3>
+        <form method="post" action="importDataToSolrFromCassandra">
+		    <button type="submit">Index</button>
+	    </form>
 </body>
 </html>
