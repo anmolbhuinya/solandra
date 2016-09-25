@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataConfig>
+   <dataSource type="JdbcDataSource" driver="org.apache.cassandra.cql.jdbc.CassandraDriver" url="jdbc:cassandra://127.0.0.1:9160/testFile" autoCommit="true" />
+   <document name="rental">
+      <entity name="place" query="SELECT id,city,province,country,zipCode,type,hasAirCondition,hasGarden,hasPool,isCloseToBeach,dailyPrice,currency,roomsNumber from testFile" autoCommit="true">
+      
+        <field column="id" name="id"  />
+        <field column="city" name="city" />
+        <field column="province" name="province" />
+        <field column="country" name="country" />
+        <field column="zipCode" name="zipCode"  />
+        <field column="type" name="type" />
+        <field column="hasAirCondition" name="hasAirCondition" />
+        <field column="hasGarden" name="hasGarden"  />
+        <field column="hasPool" name="hasPool" />
+        <field column="isCloseToBeach" name="isCloseToBeach"  />
+        <field column="dailyPrice" name="dailyPrice"  />
+        <field column="currency" name="currency" />
+        <field column="roomsNumber" name="roomsNumber"/>
+      
+      </entity>
+   </document>
+</dataConfig>
