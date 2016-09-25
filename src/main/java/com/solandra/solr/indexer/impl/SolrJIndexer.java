@@ -12,6 +12,12 @@ import org.apache.solr.common.SolrInputDocument;
 import com.solandra.solr.constant.SolrConstant;
 import com.solandra.solr.indexer.Indexer;
 
+/**
+ * Indexer to index solr input documents to solr.
+ * 
+ * @author anmol
+ *
+ */
 public class SolrJIndexer implements Indexer{
 
 	public boolean indexDocuments(List<SolrInputDocument> solrInputDocumentList) {

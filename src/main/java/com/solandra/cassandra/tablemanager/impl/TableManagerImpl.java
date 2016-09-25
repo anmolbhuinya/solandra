@@ -13,8 +13,17 @@ import com.solandra.cassandra.constant.CassandraConstant;
 import com.solandra.cassandra.model.Table;
 import com.solandra.cassandra.tablemanager.TableManager;
 
+/**
+ * Table Manager to manage table (column family) in Cassandra
+ * 
+ * @author anmol
+ *
+ */
 public class TableManagerImpl implements TableManager {
 
+	/**
+	 * See interface {@link} TableManager
+	 */
 	public boolean createTable(Session session, String tableName, LinkedHashMap<String, String> columnFamilyType) {
 		try{
 			String cqlStatement = prepareQueryForCreateTable(tableName, columnFamilyType); 
@@ -61,21 +70,33 @@ public class TableManagerImpl implements TableManager {
 		return query.toString();
 	}
 
+	/**
+	 * See interface {@link} TableManager
+	 */
 	public boolean alterTable() {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
+	/**
+	 * See interface {@link} TableManager
+	 */
 	public boolean deleteTable() {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
+	/**
+	 * See interface {@link} TableManager
+	 */
 	public boolean truncateTable() {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
+	/**
+	 * See interface {@link} TableManager
+	 */
 	public boolean insertData(Session session, String tableName, LinkedHashMap<String, String> columnFamily, LinkedHashMap<String, String> columnFamilyType) {
 		
 		try{
@@ -124,11 +145,17 @@ public class TableManagerImpl implements TableManager {
 		return query.toString();
 	}
 
+	/**
+	 * See interface {@link} TableManager
+	 */
 	public boolean deleteData() {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
+	/**
+	 * See interface {@link} TableManager
+	 */
 	public Table readData(Session session, String tableName) {
 		
 		try{
@@ -156,6 +183,9 @@ public class TableManagerImpl implements TableManager {
 		return "SELECT * FROM "+tableName+" ;";
 	}
 
+	/**
+	 * See interface {@link} TableManager
+	 */
 	public class CassandraRowConsumer implements Consumer<Row>{
 		private Table table;
 		
@@ -169,6 +199,9 @@ public class TableManagerImpl implements TableManager {
 		
 	}
 
+	/**
+	 * See interface {@link} TableManager
+	 */
 	public boolean updateData() {
 		// TODO Auto-generated method stub
 		return false;

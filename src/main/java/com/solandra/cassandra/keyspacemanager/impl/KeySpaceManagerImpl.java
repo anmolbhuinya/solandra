@@ -5,6 +5,12 @@ import org.apache.commons.lang3.StringUtils;
 import com.datastax.driver.core.Session;
 import com.solandra.cassandra.keyspacemanager.KeySpaceManager;
 
+/**
+ * Keyspace manager to manage keyspace in cassandra
+ * 
+ * @author anmol
+ *
+ */
 public class KeySpaceManagerImpl implements KeySpaceManager {
 
 	public boolean createKeySpace(Session session, String keySpaceName, String strategy, Integer replicationFactor){

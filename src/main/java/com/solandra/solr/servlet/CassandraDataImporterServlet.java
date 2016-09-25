@@ -10,6 +10,13 @@ import javax.servlet.http.HttpServletResponse;
 import com.solandra.solr.dih.DataImportHandler;
 import com.solandra.solr.dih.impl.CassandraDataImportHandler;
 
+/**
+ * Servlet to accept request for data import from cassandra to <br>
+ * solr
+ * 
+ * @author anmol
+ *
+ */
 public class CassandraDataImporterServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;

@@ -11,6 +11,12 @@ import org.apache.solr.common.params.SolrParams;
 import com.solandra.solr.constant.SolrConstant;
 import com.solandra.solr.searcher.Searcher;
 
+/**
+ * Searcher for SolrJ
+ * 
+ * @author anmol
+ *
+ */
 public class SolrJSearcher implements Searcher{
 
 	public QueryResponse search(SolrParams params) throws SolrServerException, IOException{

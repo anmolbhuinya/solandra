@@ -23,6 +23,14 @@ import com.solandra.solr.dih.DataImportHandler;
 import com.solandra.solr.indexer.Indexer;
 import com.solandra.solr.indexer.impl.SolrJIndexer;
 
+/**
+ * Cassandra Data import handler
+ * 
+ * Imports data from Cassandra and Index it to Solr
+ * 
+ * @author anmol
+ *
+ */
 public class CassandraDataImportHandler implements DataImportHandler{
 	private static final String KEYSPACE_NAME = "rental";//TODO: read from properties file
 	private static final String TABLE_NAME = "rental";//TODO: read from properties file
@@ -73,6 +81,11 @@ public class CassandraDataImportHandler implements DataImportHandler{
 		}
 	}
 	
+	/**
+	 * Solr Document Consumer
+	 * @author anmol
+	 *
+	 */
 	public class SolrDocConsumer implements BiConsumer<String, Object>{
 		private SolrInputDocument solrInputDocument;
 		private Map<String, String> columnToFieldMap = new HashMap<String, String>();
@@ -111,6 +124,11 @@ public class CassandraDataImportHandler implements DataImportHandler{
 	}
 
 
+	/**
+	 * initializes Cassandra Session
+	 * 
+	 * @return
+	 */
 	private Session initCassandraSession() {
 		SessionManager sessionManager = new SessionManagerImpl();
 		Session session = sessionManager.createSession(CassandraConstant.CONTACT_POINT, CassandraConstant.PORT);

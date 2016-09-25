@@ -15,6 +15,12 @@ import org.apache.solr.client.solrj.response.QueryResponse;
 import com.solandra.solr.searcher.Searcher;
 import com.solandra.solr.searcher.impl.SolrJSearcher;
 
+/**
+ * SearchServlet, creates solr query and request solr.
+ * 
+ * @author anmol
+ *
+ */
 public class SearchServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -44,6 +50,12 @@ public class SearchServlet extends HttpServlet {
 		request.getRequestDispatcher("/searchResult.jsp").forward(request, response);
 	}
 
+	/**
+	 * prepares the filter query
+	 * 
+	 * @param request
+	 * @param solrQuery
+	 */
 	private void prepareFilterQuery(HttpServletRequest request, SolrQuery solrQuery) {
 		if(StringUtils.isNotBlank(request.getParameter("id"))){
 			solrQuery.addFilterQuery("id:"+request.getParameter("id"));
@@ -64,16 +76,16 @@ public class SearchServlet extends HttpServlet {
 			solrQuery.addFilterQuery("type:"+request.getParameter("type"));
 		}
 		if(StringUtils.isNotBlank(request.getParameter("hasAirCondition"))){
-			solrQuery.addFilterQuery("hasAirCondition:"+"True");
+			solrQuery.addFilterQuery("hasAirCondition:"+"true");
 		}
 		if(StringUtils.isNotBlank(request.getParameter("hasGarden"))){
-			solrQuery.addFilterQuery("hasGarden:"+"True");
+			solrQuery.addFilterQuery("hasGarden:"+"true");
 		}
 		if(StringUtils.isNotBlank(request.getParameter("hasPool"))){
-			solrQuery.addFilterQuery("hasPool:"+"True");
+			solrQuery.addFilterQuery("hasPool:"+"true");
 		}
 		if(StringUtils.isNotBlank(request.getParameter("isCloseToBeach"))){
-			solrQuery.addFilterQuery("isCloseToBeach:"+"True");
+			solrQuery.addFilterQuery("isCloseToBeach:"+"true");
 		}
 		if(StringUtils.isNotBlank(request.getParameter("dailyPrice"))){
 			solrQuery.addFilterQuery("dailyPrice:"+request.getParameter("dailyPrice"));

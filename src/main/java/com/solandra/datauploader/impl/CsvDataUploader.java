@@ -19,8 +19,18 @@ import com.solandra.cassandra.tablemanager.impl.TableManagerImpl;
 import com.solandra.datauploader.DataUploader;
 import com.solandra.exception.SolandraException;
 
+/**
+ * Csv data uploader
+ * 
+ * @author anmol
+ *
+ */
 public class CsvDataUploader implements DataUploader {
 
+	/**
+	 * Uploads data to cassandra.
+	 * Table name (Column Family) name would be same as file name.
+	 */
 	public boolean uploadDataToCassandra(String keySpaceName, File file) {
 		if (StringUtils.isBlank(keySpaceName) || null == file)
 			return false;
@@ -45,6 +55,13 @@ public class CsvDataUploader implements DataUploader {
 		}
 	}
 
+	/**
+	 * inserts data to cassandra
+	 * 
+	 * @param session
+	 * @param file
+	 * @throws SolandraException
+	 */
 	private void insertDataToCassandra(Session session, File file) throws SolandraException{
 
 		BufferedReader fileReader = null;
@@ -87,6 +104,17 @@ public class CsvDataUploader implements DataUploader {
 
 	}
 
+	/**
+	 * helper method to insert data to cassandra
+	 * 
+	 * @param tableManager
+	 * @param session
+	 * @param tableName
+	 * @param headerArr
+	 * @param dataTypeArr
+	 * @param fileReader
+	 * @throws IOException
+	 */
 	private void insertData(TableManager tableManager, Session session,
 			String tableName, String[] headerArr,String[] dataTypeArr, BufferedReader fileReader)
 			throws IOException {
@@ -111,6 +139,16 @@ public class CsvDataUploader implements DataUploader {
 		}
 	}
 
+	/**
+	 * helper method to create table in cassandra.
+	 * Table name would be same as the filename
+	 * 
+	 * @param tableManager
+	 * @param session
+	 * @param tableName
+	 * @param headerArr
+	 * @param dataTypeArr
+	 */
 	private void createTable(TableManager tableManager, Session session,
 			String tableName, String[] headerArr, String[] dataTypeArr) {
 		LinkedHashMap<String, String> columnFamilyType = new LinkedHashMap<String, String>();

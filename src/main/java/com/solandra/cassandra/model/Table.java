@@ -8,7 +8,12 @@ import com.datastax.driver.core.ColumnDefinitions;
 import com.datastax.driver.core.DataType;
 import com.datastax.driver.core.Row;
 
-
+/**
+ * Table (Column family) model for cassandra table
+ * 
+ * @author anmol
+ *
+ */
 public class Table{
 
 	private List<LinkedHashMap> rows;

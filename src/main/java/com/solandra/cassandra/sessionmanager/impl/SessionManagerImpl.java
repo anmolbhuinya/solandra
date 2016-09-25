@@ -4,6 +4,12 @@ import com.datastax.driver.core.Cluster;
 import com.datastax.driver.core.Session;
 import com.solandra.cassandra.sessionmanager.SessionManager;
 
+/**
+ * Session manager to manage cassandra session
+ * 
+ * @author anmol
+ *
+ */
 public class SessionManagerImpl implements SessionManager{
 
 	public Session createSession(String contactPoint, Integer port){
