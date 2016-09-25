@@ -16,5 +16,7 @@ Todo:
 1. Flexible configuration for Cassandra
 2. Flexible Configuration for Solr
 3. Batch reads in Cassandra
+4. Property file for Solr
+5. Property file for Cassandra
 
 
