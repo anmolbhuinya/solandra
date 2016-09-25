@@ -13,7 +13,7 @@ Features:
 
 
 Todo:
-1. Flexible configuration for Cassandra
-2. Flexible Configuration for Solr
+Flexible configuration for Cassandra
+Flexible Configuration for Solr
 
 
