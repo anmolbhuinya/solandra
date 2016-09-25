@@ -3,6 +3,7 @@ package com.solandra.cassandra.tablemanager;
 import java.util.LinkedHashMap;
 
 import com.datastax.driver.core.Session;
+import com.solandra.cassandra.model.Table;
 
 public interface TableManager {
 
@@ -20,7 +21,7 @@ public interface TableManager {
 	
 	boolean deleteData();
 	
-	boolean readData();
+	Table readData(Session session, String tableName);
 	
 	boolean updateData();
 }

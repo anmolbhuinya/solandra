@@ -5,9 +5,10 @@ import java.util.LinkedHashMap;
 import junit.framework.TestCase;
 
 import com.datastax.driver.core.Session;
-import com.solandra.cassandra.constant.Constant;
+import com.solandra.cassandra.constant.CassandraConstant;
 import com.solandra.cassandra.keyspacemanager.KeySpaceManager;
 import com.solandra.cassandra.keyspacemanager.impl.KeySpaceManagerImpl;
+import com.solandra.cassandra.model.Table;
 import com.solandra.cassandra.sessionmanager.SessionManager;
 import com.solandra.cassandra.sessionmanager.impl.SessionManagerImpl;
 import com.solandra.cassandra.tablemanager.TableManager;
@@ -25,9 +26,9 @@ public class TableManagerTest extends TestCase{
 	   // assigning the values
 	   protected void setUp(){
 		   sessionManager = new SessionManagerImpl();
-		   session = sessionManager.createSession(Constant.CONTACT_POINT, Constant.PORT);
+		   session = sessionManager.createSession(CassandraConstant.CONTACT_POINT, CassandraConstant.PORT);
 		   keySpaceManager = new KeySpaceManagerImpl();
-		   keySpaceManager.createKeySpace(session, KEYSPACENAME, Constant.STRATEGY, Constant.REPLICATION_FACTOR);
+		   keySpaceManager.createKeySpace(session, KEYSPACENAME, CassandraConstant.STRATEGY, CassandraConstant.REPLICATION_FACTOR);
 		   keySpaceManager.useKeySpace(session, KEYSPACENAME);
 		   tableManager = new TableManagerImpl();
 	   }
@@ -55,6 +56,21 @@ public class TableManagerTest extends TestCase{
 		   LinkedHashMap<String, String> columnFamilyData = getTestColumnFamilyData();
 		   flag = tableManager.insertData(session, tableName, columnFamilyData, columnFamily);
 		   assertTrue(flag);
+	   }
+	   
+	   public void testReadData(){
+		   String tableName="TEST_FAMILY_COLUMN";
+		   LinkedHashMap<String, String> columnFamily =getTestColumnFamily();
+		   boolean flag = tableManager.createTable(session, tableName, columnFamily);
+		   assertTrue(flag);
+	   
+		   LinkedHashMap<String, String> columnFamilyData = getTestColumnFamilyData();
+		   flag = tableManager.insertData(session, tableName, columnFamilyData, columnFamily);
+		   assertTrue(flag);
+		   
+		   Table table = tableManager.readData(session, tableName);
+		   assertNotNull(table);
+		   assertNotNull(table.getRows());
 	   }
 
 	private LinkedHashMap<String, String> getTestColumnFamilyData() {

@@ -5,7 +5,7 @@ import java.io.File;
 import junit.framework.TestCase;
 
 import com.datastax.driver.core.Session;
-import com.solandra.cassandra.constant.Constant;
+import com.solandra.cassandra.constant.CassandraConstant;
 import com.solandra.cassandra.keyspacemanager.KeySpaceManager;
 import com.solandra.cassandra.keyspacemanager.impl.KeySpaceManagerImpl;
 import com.solandra.cassandra.sessionmanager.SessionManager;
@@ -29,7 +29,7 @@ public class DataUploaderTest extends TestCase{
 	   }
 	   
 	   protected void tearDown(){
-		   Session session = sessionManager.createSession(Constant.CONTACT_POINT, Constant.PORT);
+		   Session session = sessionManager.createSession(CassandraConstant.CONTACT_POINT, CassandraConstant.PORT);
 		   keySpaceManager.dropKeySpace(session , KEYSPACENAME);
 		   if(null!=session){
 			   session.close();

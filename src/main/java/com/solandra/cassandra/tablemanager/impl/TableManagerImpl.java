@@ -1,10 +1,16 @@
 package com.solandra.cassandra.tablemanager.impl;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map.Entry;
+import java.util.function.Consumer;
 
+import com.datastax.driver.core.ResultSet;
+import com.datastax.driver.core.Row;
 import com.datastax.driver.core.Session;
-import com.solandra.cassandra.constant.Constant;
+import com.solandra.cassandra.constant.CassandraConstant;
+import com.solandra.cassandra.model.Table;
 import com.solandra.cassandra.tablemanager.TableManager;
 
 public class TableManagerImpl implements TableManager {
@@ -24,12 +30,8 @@ public class TableManagerImpl implements TableManager {
 	}
 
 	/**
-	 * Sample query, assumption: first column would be primary key
+	 * First column would be primary key
 	 * 
-	 * 		String cqlStatement = "CREATE TABLE users (" + 
-	 *	                      " user_name varchar PRIMARY KEY," + 
-	 *	                      " password varchar " + 
-	 *	                      ");";
 	 * @param tableName
 	 * @param columnFamily
 	 * @return
@@ -92,11 +94,6 @@ public class TableManagerImpl implements TableManager {
 	}
 
 	/**
-	 * Sample query
-	 * 
-	 *  String query = "INSERT INTO emp (emp_id, emp_name, emp_city,emp_phone, emp_sal)"
-	 *     
-	 *        + " VALUES(2,'robin', 'Hyderabad', 9848022339, 40000);" ;
 	 * 
 	 * @param tableName
 	 * @param columnFamily
@@ -114,7 +111,7 @@ public class TableManagerImpl implements TableManager {
 			
 			tableSubQuery.append(columnName).append(",");
 			
-			if(Constant.VARCHAR.equalsIgnoreCase(columnFamilyType.get(columnName))){
+			if(CassandraConstant.VARCHAR.equalsIgnoreCase(columnFamilyType.get(columnName))){
 				valueSubQuery.append("'").append(columnValue).append("'").append(",");
 			}else{
 				valueSubQuery.append(columnValue).append(",");
@@ -132,9 +129,44 @@ public class TableManagerImpl implements TableManager {
 		return false;
 	}
 
-	public boolean readData() {
-		// TODO Auto-generated method stub
-		return false;
+	public Table readData(Session session, String tableName) {
+		
+		try{
+		      //queries
+		      String query = prepareQueryToRead(tableName);
+		                             
+		      //Executing the query
+		     ResultSet rs = session.execute(query);
+		     if(null==rs) return null;
+
+		     Table table = new Table(new ArrayList<LinkedHashMap>());
+		     Iterator<Row> iterator = rs.iterator();
+		     Consumer<Row> rowConsumer = new CassandraRowConsumer(table);
+			 iterator.forEachRemaining(rowConsumer);
+		        
+		      System.out.println("Data Read");
+		      return table;
+		}catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	private String prepareQueryToRead(String tableName) {
+		return "SELECT * FROM "+tableName+" ;";
+	}
+
+	public class CassandraRowConsumer implements Consumer<Row>{
+		private Table table;
+		
+		public CassandraRowConsumer(Table table){
+			this.table = table;
+		}
+
+		public void accept(Row row) {
+			table.addRow(row);
+		}
+		
 	}
 
 	public boolean updateData() {

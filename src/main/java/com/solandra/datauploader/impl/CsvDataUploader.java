@@ -9,7 +9,7 @@ import java.util.LinkedHashMap;
 import org.apache.commons.lang3.StringUtils;
 
 import com.datastax.driver.core.Session;
-import com.solandra.cassandra.constant.Constant;
+import com.solandra.cassandra.constant.CassandraConstant;
 import com.solandra.cassandra.keyspacemanager.KeySpaceManager;
 import com.solandra.cassandra.keyspacemanager.impl.KeySpaceManagerImpl;
 import com.solandra.cassandra.sessionmanager.SessionManager;
@@ -27,13 +27,14 @@ public class CsvDataUploader implements DataUploader {
 
 		try{
 			SessionManager sessionManager = new SessionManagerImpl();
-			Session session = sessionManager.createSession(Constant.CONTACT_POINT, Constant.PORT);
+			Session session = sessionManager.createSession(CassandraConstant.CONTACT_POINT, CassandraConstant.PORT);
 
 			KeySpaceManager keySpaceManager = new KeySpaceManagerImpl();
 			keySpaceManager.createKeySpace(session, keySpaceName,
-					Constant.STRATEGY, Constant.REPLICATION_FACTOR);
+					CassandraConstant.STRATEGY, CassandraConstant.REPLICATION_FACTOR);
 			keySpaceManager.useKeySpace(session, keySpaceName);
 			insertDataToCassandra(session, file);
+			session.close();
 			return true;
 		}catch(SolandraException se){
 			se.printStackTrace();
@@ -60,11 +61,11 @@ public class CsvDataUploader implements DataUploader {
 
 			// Read the CSV file header
 			String headerLine = fileReader.readLine();
-			String[] headerArr = headerLine.split(Constant.COMMA_DELIMITER);
+			String[] headerArr = headerLine.split(CassandraConstant.COMMA_DELIMITER);
 
 			// Read the CSV second line (data type)
 			String dataTypeLine = fileReader.readLine();
-			String[] dataTypeArr = dataTypeLine.split(Constant.COMMA_DELIMITER);
+			String[] dataTypeArr = dataTypeLine.split(CassandraConstant.COMMA_DELIMITER);
 
 			TableManager tableManager = new TableManagerImpl();
 			createTable(tableManager, session, tableName, headerArr,
@@ -100,7 +101,7 @@ public class CsvDataUploader implements DataUploader {
 		String line = "";
 		while ((line = fileReader.readLine()) != null) {
 			// Get all tokens available in line
-			String[] tokens = line.split(Constant.COMMA_DELIMITER);
+			String[] tokens = line.split(CassandraConstant.COMMA_DELIMITER);
 			if (tokens.length > 0) {
 				for (int i = 0; i < headerArr.length; i++) {
 					columnFamilyData.put(headerArr[i], tokens[i]);

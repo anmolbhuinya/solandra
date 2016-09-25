@@ -1,6 +1,6 @@
 package com.solandra.cassandra.constant;
 
-public interface Constant {
+public interface CassandraConstant {
 
 	String CONTACT_POINT = "127.0.0.1";
 	Integer PORT = 9042;
