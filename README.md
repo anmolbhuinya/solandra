@@ -3,5 +3,21 @@
 Named on open source project Solandra, this project is personal project where Cassandra has been used as storage and Solr has been used 
 as search Engine.
 
-Solr:
-Cassandra:
+Solr: 6.2
+Cassandra: 3.5
+
+Features:
+
+
+
+
+
+Todo:
+1. Flexible configuration for Cassandra
+2. Flexible Configuration for Solr
+3. Batch reads in Cassandra
+4. Property file for Solr
+5. Property file for Cassandra
+6. Add logger
+
+
