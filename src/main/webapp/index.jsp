@@ -6,10 +6,15 @@
 <title>Upload Data to Cassandra</title>
 </head>
 <body>
-        <h3>Choose File to Upload in Server</h3>
+        <h3>Choose File to Upload in Cassandra</h3>
         <form action="uploadFile" method="post" enctype="multipart/form-data">
                 <input type="file" name="file" /> 
                 <input type="submit" value="upload" />
         </form>
+        
+        
+        <h3>Or</h3>
+        <h3>Go To Search Page</h3>
+        <a href="search.jsp">Search Rental</a>
 </body>
 </html>

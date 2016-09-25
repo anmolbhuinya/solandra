@@ -14,7 +14,7 @@ import com.solandra.solr.searcher.Searcher;
 public class SolrJSearcher implements Searcher{
 
 	public QueryResponse search(SolrParams params) throws SolrServerException, IOException{
-		SolrClient solrClient = new HttpSolrClient.Builder(SolrConstant.SOLR_URL).build();
+		SolrClient solrClient = new HttpSolrClient.Builder(SolrConstant.SOLR_URL+SolrConstant.SOLR_COLLECTION).build();
 		
 		QueryResponse queryResponse = solrClient.query(params);
 		solrClient.close();

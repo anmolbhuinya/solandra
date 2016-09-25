@@ -37,7 +37,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>RentalSearch</servlet-name>
-		<url-pattern>/retanlSearch</url-pattern>
+		<url-pattern>/rentalSearch</url-pattern>
 	</servlet-mapping>
 
 </web-app>

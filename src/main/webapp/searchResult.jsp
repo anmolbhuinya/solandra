@@ -8,5 +8,12 @@
 </head>
 <body>
 
+<a href="search.jsp">Back To Search</a><br><br><br>
+<c:if test="${not empty searchResult}">
+    ${searchResult}
+</c:if>
+
+
+
 </body>
 </html>
