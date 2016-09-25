@@ -18,5 +18,6 @@ Todo:
 3. Batch reads in Cassandra
 4. Property file for Solr
 5. Property file for Cassandra
+6. Add logger
 
 
